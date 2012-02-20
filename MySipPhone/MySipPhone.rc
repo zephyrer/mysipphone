@@ -1,0 +1,353 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\MySipPhone.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MySipPhone.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MySipPhone"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "MySipPhone, Version 0.0.1 Beta",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2012",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_MYSIPPHONE_DIALOG DIALOGEX 0, 0, 146, 172
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "MySipPhone"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "1",IDC_KEY_1,7,24,41,18
+    PUSHBUTTON      "2",IDC_KEY_2,52,24,41,18
+    PUSHBUTTON      "3",IDC_KEY_3,98,24,41,18
+    PUSHBUTTON      "4",IDC_KEY_4,7,45,41,18
+    PUSHBUTTON      "5",IDC_KEY_5,52,45,41,18
+    PUSHBUTTON      "6",IDC_KEY_6,98,45,41,18
+    PUSHBUTTON      "7",IDC_KEY_7,7,66,41,18
+    PUSHBUTTON      "8",IDC_KEY_8,52,66,41,18
+    PUSHBUTTON      "9",IDC_KEY_9,98,66,41,18
+    PUSHBUTTON      "*",IDC_KEY_STAR,7,87,41,18
+    PUSHBUTTON      "0",IDC_KEY_0,52,87,41,18
+    PUSHBUTTON      "#",IDC_KEY_POUND,98,87,41,18
+    COMBOBOX        IDC_COMBO_DEST,7,7,132,98,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Call/Answer",IDC_CALL,12,109,60,16
+    PUSHBUTTON      "Debug",IDC_DEBUG_BUTTON,104,152,35,13
+    PUSHBUTTON      "Hangup/Reject",IDC_HANGUP,76,109,60,16
+    PUSHBUTTON      "Hold",IDC_HOLD,12,130,60,16
+    PUSHBUTTON      "Transfer",IDC_TRANSFER,76,129,60,16
+END
+
+IDD_DEBUG_WINDOW DIALOGEX 0, 0, 474, 194
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Debug"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_DEBUG_STATUS,"RichEdit20W",WS_BORDER | WS_VSCROLL | WS_TABSTOP | 0x2084,0,0,473,194
+END
+
+IDD_SIP_ACCOUNT DIALOGEX 0, 0, 195, 284
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Account Info"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,45,263,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,104,263,50,14
+    GROUPBOX        "Proxy",IDC_STATIC,7,3,181,90
+    LTEXT           "Login Name: ",IDC_STATIC,25,17,46,12
+    LTEXT           "Password: ",IDC_STATIC,25,37,46,13
+    LTEXT           "Host: ",IDC_STATIC,26,57,33,9
+    CONTROL         "Use Proxy",IDC_USE_PROXY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,75,59,12
+    EDITTEXT        IDC_PROXY_LOGIN,77,17,96,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXY_PASS,77,36,96,13,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXY_HOST,77,55,96,13,ES_AUTOHSCROLL
+    GROUPBOX        "SIP Registration",IDC_STATIC,7,102,181,150
+    LTEXT           "User/Login:",IDC_STATIC,19,119,43,12
+    EDITTEXT        IDC_SIP_USER,81,117,96,13,ES_AUTOHSCROLL
+    LTEXT           "Authorization ID:",IDC_STATIC,19,137,58,12
+    EDITTEXT        IDC_SIP_AUTH_ID,81,136,96,13,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,19,155,58,12
+    EDITTEXT        IDC_SIP_PASS,81,154,96,13,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Domain/Host:",IDC_STATIC,19,174,58,12
+    EDITTEXT        IDC_SIP_HOST,81,172,96,13,ES_AUTOHSCROLL
+    LTEXT           "Proxy:",IDC_STATIC,20,192,44,9
+    EDITTEXT        IDC_SIP_PROXY,81,191,96,13,ES_AUTOHSCROLL
+    LTEXT           "TTL:",IDC_STATIC,20,209,44,9
+    LTEXT           "User Input Mode:",IDC_STATIC,20,226,60,9
+    COMBOBOX        IDC_USER_INPUT_MODE,81,226,70,12,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SIP_REGISTER_TTL,81,208,35,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Seconds",IDC_STATIC,125,209,35,9
+END
+
+IDD_TRANSFER_WINDOW DIALOGEX 0, 0, 170, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Transfer to:"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,29,28,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,86,28,50,14
+    LTEXT           "Address:",IDC_STATIC,8,8,34,11
+    COMBOBOX        IDC_TRANSFER_COMBO,45,7,118,85,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SETTINGS DIALOGEX 0, 0, 230, 133
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,61,111,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,117,111,50,14
+    GROUPBOX        "Audio",IDC_STATIC,7,3,216,49
+    LTEXT           "Play Device:",IDC_STATIC,16,18,44,13
+    LTEXT           "Record Device:",IDC_STATIC,16,35,54,13
+    COMBOBOX        IDC_PLAYBACK_COMBO,73,16,141,100,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RECORDING_COMBO,73,33,141,100,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Network",IDC_STATIC,7,55,216,49
+    LTEXT           "Listening IP:",IDC_STATIC,54,68,44,10
+    LTEXT           "Listening Port:",IDC_STATIC,71,87,52,9
+    COMBOBOX        IDC_IP_COMBO,101,67,82,100,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_LISTEN_PORT,125,85,38,12,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,1
+ PRODUCTVERSION 0,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Luimas Soft"
+            VALUE "FileDescription", "MySipPhone"
+            VALUE "FileVersion", "0.0.0.1"
+            VALUE "InternalName", "MySipPhone.exe"
+            VALUE "LegalCopyright", " (c) Luimas Soft.  All rights reserved."
+            VALUE "OriginalFilename", "MySipPhone.exe"
+            VALUE "ProductName", "MySipPhone Beta"
+            VALUE "ProductVersion", "0.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_MYSIPPHONE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 139
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    IDD_SIP_ACCOUNT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 188
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 277
+    END
+
+    IDD_TRANSFER_WINDOW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 126
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_SETTINGS MENU 
+BEGIN
+    POPUP "Settings"
+    BEGIN
+        MENUITEM "Account",                     ID_SETTINGS_ACCOUNT
+        MENUITEM "Settings",                    ID_SETTINGS_SETTINGS
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_SETTINGS_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS 
+BEGIN
+    "0",            IDC_KEY_0,              ASCII,  NOINVERT
+    "1",            IDC_KEY_1,              ASCII,  NOINVERT
+    "2",            IDC_KEY_2,              ASCII,  NOINVERT
+    "3",            IDC_KEY_3,              ASCII,  NOINVERT
+    "4",            IDC_KEY_4,              ASCII,  NOINVERT
+    "5",            IDC_KEY_5,              ASCII,  NOINVERT
+    "6",            IDC_KEY_6,              ASCII,  NOINVERT
+    "7",            IDC_KEY_7,              ASCII,  NOINVERT
+    "8",            IDC_KEY_8,              ASCII,  NOINVERT
+    "9",            IDC_KEY_9,              ASCII,  NOINVERT
+    "#",            IDC_KEY_POUND,          ASCII,  NOINVERT
+    "*",            IDC_KEY_STAR,           ASCII,  NOINVERT
+    VK_RETURN,      IDC_CALL,               VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About MySipPhone..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\MySipPhone.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
