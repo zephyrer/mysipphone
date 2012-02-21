@@ -38,5 +38,6 @@ public:
 	CStringArray m_RecordDeviceList;
 	CStringArray m_IPList;
 	CString m_listenPort;
+	CString m_stunServer;
 };
 

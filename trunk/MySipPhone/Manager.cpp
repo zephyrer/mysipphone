@@ -58,8 +58,8 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 
 	////////////////////////////////////////
 	// General fields
-//	SetDefaultUserName("luimas");
-//	SetDefaultDisplayName("luimas");
+// 	SetDefaultUserName("luimas");
+// 	SetDefaultDisplayName("luimas");
 
 
 	////////////////////////////////////////
@@ -70,15 +70,17 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
  		<< setfill('\n') << interfaceTable << setfill(' ') << flush;
 	}
 
+ 	SetNATHandling();
+
 	PString psLocalIP = config.GetString(LocalIPKey, "*");
 	PString psLocalPort = config.GetString(ListenPortKey, "5060");
 	PString localInterface = "sip:udp$" + psLocalIP + ":" + psLocalPort;
-	m_LocalInterfaces.push_back(localInterface);	
+	m_LocalInterfaces.push_back(localInterface);
+
 	StartAllListeners();
 
 	////////////////////////////////////////
 	// Sound fields
-// 	PConfig config;
 
  	if( pcssEP->SetSoundChannelPlayDevice( config.GetString(SoundPlayConfigKey) ) ) {
 		LogWindow << "PLAY DEVICE: " << pcssEP->GetSoundChannelPlayDevice() << endl;
@@ -105,7 +107,7 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 		for (OpalMediaFormatList::iterator format = possibleFormats.begin(); format != possibleFormats.end(); ++format) {
 			if (format->IsTransportable()) {
 				m_mediaInfo.push_back(MyMedia(*format));
-//				LogWindow << "POSSIBLE CODECS " << m_mediaInfo.back().mediaFormat << endl;
+// 				LogWindow << "POSSIBLE CODECS " << m_mediaInfo.back().mediaFormat << endl;
 			}
 		}
 
@@ -121,9 +123,17 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 				LogWindow << "POSSIBLE CODECS " << psMyFormats << endl;
 				mm->preferenceOrder = 1;	//codecIndex;
 				codecIndex++;
-			} else if( P_MAX_INDEX != psMyFormats.Find("UserInput/RFC2833") ) {
+			} else if( P_MAX_INDEX != psMyFormats.Find("G.729A") ) {
+				LogWindow << "POSSIBLE CODECS " << psMyFormats << endl;
+				mm->preferenceOrder = 3;	//codecIndex;
+				codecIndex++;
+			} else if( P_MAX_INDEX != psMyFormats.Find("G.729") ) {
 				LogWindow << "POSSIBLE CODECS " << psMyFormats << endl;
 				mm->preferenceOrder = 2;	//codecIndex;
+				codecIndex++;
+			} else if( P_MAX_INDEX != psMyFormats.Find("UserInput/RFC2833") ) {
+				LogWindow << "POSSIBLE CODECS " << psMyFormats << endl;
+				mm->preferenceOrder = 4;	//codecIndex;
 				codecIndex++;
 			} else {
 				mm->preferenceOrder = -1;
@@ -134,7 +144,7 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 	}
 
 
-#if PTRACING
+#if 0//PTRACING
 	if (PTrace::CanTrace(4)) {
 		OpalMediaFormatList mediaFormats = OpalMediaFormat::GetAllRegisteredMediaFormats();
 		ostream & traceStream = PTrace::Begin(4, __FILE__, __LINE__);
@@ -172,6 +182,7 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 
 	StartRegistrations();
 
+	SetDefaultUserName(config.GetString(RegistrarUsernameKey));
 
 	AddRouteEntry("pc:.*             = sip:<da>");
 	AddRouteEntry("sip:.*			 = pc:");
@@ -182,6 +193,12 @@ bool CManager::Initialise(CMySipPhoneDlg * dlg)
 
 void CManager::SetNATHandling()
 {
+	if(config.GetBoolean(StunServerUsedKey,false)) {
+		m_NATHandling = 2;
+		m_STUNServer = config.GetString(StunServerKey, "");
+	} else {
+		m_NATHandling = 0;
+	}
 	switch (m_NATHandling) {
 	case 1 :
 		if (!m_NATRouter.IsEmpty())
@@ -586,7 +603,7 @@ void CManager::AdjustMediaFormats(bool   local,
 				for (OpalMediaFormatList::iterator it = mediaFormats.begin(); it != mediaFormats.end(); ++it) {
 					if (*it == mm->mediaFormat) {
 						*it = mm->mediaFormat;
-						LogWindow << "Adjusting ============ " << mm->mediaFormat << endl;
+//						LogWindow << "Adjusting ============ " << mm->mediaFormat << endl;
 					}
 				}
 			}

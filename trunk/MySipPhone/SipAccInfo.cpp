@@ -79,9 +79,6 @@ BOOL CSipAccInfo::OnInitDialog()
 	edit = (CEdit*)GetDlgItem(IDC_SIP_REGISTER_TTL);
 	edit->SetWindowText(sipRegTTL.AsUCS2());
 
-
-
-
 	return TRUE;
 }
 

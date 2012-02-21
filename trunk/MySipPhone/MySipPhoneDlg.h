@@ -85,6 +85,7 @@ public:
 	afx_msg void OnBnClickedKeyPound();
 	afx_msg void OnBnClickedHold();
 	afx_msg void OnBnClickedTransfer();
+	afx_msg void OnBnClickedButtonMenu();
 };
 
 
