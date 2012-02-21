@@ -8,6 +8,8 @@
 
 const char LocalIPKey[]				= "LocalIP";
 const char ListenPortKey[]			= "ListenPort";
+const char StunServerKey[]			= "STUNServer";
+const char StunServerUsedKey[]		= "STUNServerUsed";
 const char SoundPlayConfigKey[]		= "SoundPlayDevice";
 const char SoundRecordConfigKey[]	= "SoundRecordDevice";
 const char RegistrarUsedKey[]		= "RegistrarUsed";

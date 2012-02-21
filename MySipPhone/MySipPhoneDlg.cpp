@@ -103,6 +103,7 @@ BEGIN_MESSAGE_MAP(CMySipPhoneDlg, CDialog)
 	ON_COMMAND_RANGE(IDC_KEY_0, IDC_KEY_9, &CMySipPhoneDlg::OnBnClickedKey)
 	ON_BN_CLICKED(IDC_HOLD, &CMySipPhoneDlg::OnBnClickedHold)
 	ON_BN_CLICKED(IDC_TRANSFER, &CMySipPhoneDlg::OnBnClickedTransfer)
+	ON_BN_CLICKED(IDC_BUTTON_MENU, &CMySipPhoneDlg::OnBnClickedButtonMenu)
 END_MESSAGE_MAP()
 
 
@@ -144,8 +145,10 @@ BOOL CMySipPhoneDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
+#if 1
 	// Note that LoadAccelerator does not require DestroyAcceleratorTable
 	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_ACCELERATOR));
+#endif
 
 	//For systray icon
 	CString csSystrayTitle= _T("MySipPhone");
@@ -324,7 +327,7 @@ void CMySipPhoneDlg::GetClipboardText()
 		psClipBoardData.Replace(_T("-"), _T(""), true);
 		psClipBoardData.Replace(_T("("), _T(""), true);
 		psClipBoardData.Replace(_T(")"), _T(""), true);
-		psClipBoardData	= psClipBoardData.Left(15);
+		psClipBoardData	= psClipBoardData.Left(25);
 		if(!psClipBoardData.IsEmpty() && (psClipBoardData.AsInt64() > 0)) {
 			m_cdestination.SetWindowText(psClipBoardData.AsUCS2());
 		}
@@ -400,7 +403,11 @@ void CMySipPhoneDlg::OnBnClickedCall()
 	if(!csType.CompareNoCase(_T("call")))  {
 		CString destNumber;
 		m_cdestination.GetWindowText(destNumber);
-		main->MakeCall(PString(destNumber));
+		PString psDest(destNumber);
+		if( P_MAX_INDEX == psDest.Find(_T("@")) ) {
+			psDest = psDest + "@" + main->config.GetString(RegistrarDomainKey);
+		}
+		main->MakeCall(psDest);
 	} else {
 		main->AnswerCall();
 	}
@@ -433,4 +440,16 @@ void CMySipPhoneDlg::OnBnClickedHold()
 void CMySipPhoneDlg::OnBnClickedTransfer()
 {
 	main->OnTransfer();
+}
+
+void CMySipPhoneDlg::OnBnClickedButtonMenu()
+{
+	CPoint point;    
+	GetCursorPos(&point);
+	CMenu menu;
+	menu.LoadMenu(IDR_MENU_SETTINGS);
+	CMenu* tracker = menu.GetSubMenu(0);
+	SetForegroundWindow();
+	tracker->TrackPopupMenu( 0, point.x, point.y, this );
+	PostMessage(WM_NULL, 0, 0);
 }

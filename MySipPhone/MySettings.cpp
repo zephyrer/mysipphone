@@ -16,6 +16,7 @@ CMySettings::CMySettings(CWnd* pParent /*=NULL*/)
 	, m_RecordDeviceCur(_T(""))
 	, m_IPCur(_T(""))
 	, m_listenPort(_T(""))
+	, m_stunServer(_T(""))
 {
 	CMySipPhoneDlg* mySipPhoneDlg = (CMySipPhoneDlg* ) this->m_pParentWnd;
 	config = mySipPhoneDlg->main->config;
@@ -50,6 +51,7 @@ CMySettings::CMySettings(CWnd* pParent /*=NULL*/)
 	}
 	m_IPCur = config.GetString(LocalIPKey, "*").AsUCS2();
 	m_listenPort = config.GetString(ListenPortKey, "5060").AsUCS2();
+	m_stunServer = config.GetString(StunServerKey, "").AsUCS2();
 
 	Create (IDD, pParent);
 }
@@ -68,6 +70,9 @@ BOOL CMySettings::OnInitDialog()
 	
 // 	m_PlayDeviceBox.EnableWindow(TRUE);
 // 	m_RecordDeviceBox.EnableWindow(TRUE);
+
+	int m_STUNSeverUsed = config.GetBoolean(StunServerUsedKey, false);
+	((CButton*)GetDlgItem(IDC_USE_STUN))->SetCheck( m_STUNSeverUsed );
 
 	return TRUE;
 }
@@ -110,6 +115,7 @@ void CMySettings::DoDataExchange(CDataExchange* pDX)
 	DDX_CBString(pDX, IDC_RECORDING_COMBO, m_RecordDeviceCur);
 	DDX_CBString(pDX, IDC_IP_COMBO, m_IPCur);
 	DDX_Text(pDX, IDC_LISTEN_PORT, m_listenPort);
+	DDX_Text(pDX, IDC_STUN_SERVER, m_stunServer);
 }
 
 
@@ -151,6 +157,14 @@ void CMySettings::OnBnClickedOk()
 	str = PString(m_listenPort);
 	config.SetString(ListenPortKey, str);
 	LogWindow << "Setting Listen Port: " << str << endl;
+
+	str = PString(m_stunServer);
+	config.SetString(StunServerKey, str);
+	LogWindow << "Setting STUN Server: " << str << endl;
+
+	int iUseSTUN = ((CButton*)GetDlgItem(IDC_USE_STUN))->GetCheck( );
+	config.SetBoolean(StunServerUsedKey, iUseSTUN);
+
 
 	OnClose();
 }
